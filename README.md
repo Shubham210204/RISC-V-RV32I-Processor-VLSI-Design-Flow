@@ -64,6 +64,7 @@ This repository combines all three aspects into a unified RISC-V learning and im
 ### Why RISC-V (Comparison with ARM and x86)
 
 RISC-V is an open standard instruction set architecture (ISA), unlike ARM (licensed) and x86 (proprietary).
+<img src="https://github.com/Shubham210204/RISC-V-RV32I-Processor-Design-Implementation/blob/main/images/RISCV_vs_ARM_vs_x86.png" height=600 width=900>
 
 * **Openness**: RISC-V is free and open-source, allowing academic, research, and commercial use without licensing fees.
 * **Simplicity**: RISC-V has a reduced instruction set, making it easier to implement compared to ARM and x86.
