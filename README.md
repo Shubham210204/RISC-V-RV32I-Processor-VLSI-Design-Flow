@@ -85,7 +85,7 @@ The implemented processor follows the **RV32I** base ISA (32-bit Integer instruc
 ### RISC-V Architecture
 
 The processor follows a single-cycle design for clarity and ease of verification:
-<img src="https://github.com/Shubham210204/RISC-V-RV32I-Processor-Design-Implementation/blob/main/images/architecture.png">
+<img src="https://github.com/Shubham210204/RISC-V-RV32I-Processor-Design-Implementation/blob/main/images/architecture.png" width=900>
 
 * **Program Counter (PC):** Tracks instruction execution sequence
 * **Instruction Memory:** Stores program instructions
@@ -100,7 +100,7 @@ The processor follows a single-cycle design for clarity and ease of verification
 
 RISC-V processors typically follow a **5-stage pipeline** execution model. Each instruction goes through the following stages:
 
-<img src="https://github.com/Shubham210204/RISC-V-RV32I-Processor-Design-Implementation/blob/main/images/pipeline.png">
+<img src="https://github.com/Shubham210204/RISC-V-RV32I-Processor-Design-Implementation/blob/main/images/pipeline.png" width=900>
 
 1. **Instruction Fetch (IF)**
 
