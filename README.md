@@ -85,6 +85,7 @@ The implemented processor follows the **RV32I** base ISA (32-bit Integer instruc
 ### RISC-V Architecture
 
 The processor follows a single-cycle design for clarity and ease of verification:
+<img src="https://github.com/Shubham210204/RISC-V-RV32I-Processor-Design-Implementation/blob/main/images/architecture.png">
 
 * **Program Counter (PC):** Tracks instruction execution sequence
 * **Instruction Memory:** Stores program instructions
@@ -99,7 +100,7 @@ The processor follows a single-cycle design for clarity and ease of verification
 
 RISC-V processors typically follow a **5-stage pipeline** execution model. Each instruction goes through the following stages:
 
-<img width="780" height="392" alt="Screenshot 2025-08-23 124619" src="https://github.com/user-attachments/assets/c6606172-6397-4837-ac63-074da7172154" />
+<img src="https://github.com/Shubham210204/RISC-V-RV32I-Processor-Design-Implementation/blob/main/images/pipeline.png">
 
 1. **Instruction Fetch (IF)**
 
@@ -131,6 +132,7 @@ This pipeline increases instruction throughput by overlapping execution, meaning
 ### Base ISA Instructions (RV32I – 39 Instructions)
 
 The RV32I base instruction set contains 39 fundamental instructions, grouped into different types based on their format and purpose.
+<img src="https://github.com/Shubham210204/RISC-V-RV32I-Processor-Design-Implementation/blob/main/images/instruction_format.png">
 
 #### 1. R-Type Instructions (Register-Register Operations)
 
