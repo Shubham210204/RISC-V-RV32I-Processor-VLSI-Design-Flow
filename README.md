@@ -84,7 +84,7 @@ The implemented processor follows the **RV32I** base ISA (32-bit Integer instruc
 
 ### RISC-V Architecture
 
-The processor follows a single-cycle design for clarity and ease of verification:
+Below is a block diagram of a single-cycle RISC-V processor:
 <img src="https://github.com/Shubham210204/RISC-V-RV32I-Processor-Design-Implementation/blob/main/images/architecture.png" width=900>
 
 * **Program Counter (PC):** Tracks instruction execution sequence
@@ -136,7 +136,7 @@ The RV32I base instruction set contains 39 fundamental instructions, grouped int
 
 #### 1. R-Type Instructions (Register-Register Operations)
 
-* Format: `opcode | rd | funct3 | rs1 | rs2 | funct7`
+* Format: `funct7 | rs2 | rs1 | funct3 | rd | opcode`
 * Used for arithmetic and logical operations between registers.
 * Examples:
 
@@ -152,7 +152,7 @@ The RV32I base instruction set contains 39 fundamental instructions, grouped int
 
 #### 2. I-Type Instructions (Immediate and Load Operations)
 
-* Format: `opcode | rd | funct3 | rs1 | imm[11:0]`
+* Format: `imm[11:0] | rs1 | funct3 | rd | opcode`
 * Used for immediate arithmetic and memory load.
 * Examples:
 
@@ -165,7 +165,7 @@ The RV32I base instruction set contains 39 fundamental instructions, grouped int
 
 #### 3. S-Type Instructions (Store Operations)
 
-* Format: `opcode | imm[11:5] | rs2 | rs1 | funct3 | imm[4:0]`
+* Format: `imm[11:5] | rs2 | rs1 | funct3 | imm[4:0] | opcode`
 * Used for storing data from register to memory.
 * Examples:
 
@@ -175,7 +175,7 @@ The RV32I base instruction set contains 39 fundamental instructions, grouped int
 
 #### 4. B-Type Instructions (Branch Operations)
 
-* Format: `opcode | imm[12|10:5] | rs2 | rs1 | funct3 | imm[4:1|11]`
+* Format: `imm[12|10:5] | rs2 | rs1 | funct3 | imm[4:1|11] | opcode`
 * Used for conditional branching.
 * Examples:
 
@@ -188,7 +188,7 @@ The RV32I base instruction set contains 39 fundamental instructions, grouped int
 
 #### 5. U-Type Instructions (Upper Immediate)
 
-* Format: `opcode | rd | imm[31:12]`
+* Format: `imm[31:12] | rd | opcode`
 * Used for loading large immediate values.
 * Examples:
 
@@ -197,7 +197,7 @@ The RV32I base instruction set contains 39 fundamental instructions, grouped int
 
 #### 6. J-Type Instructions (Jump Operations)
 
-* Format: `opcode | rd | imm[20|10:1|11|19:12]`
+* Format: `imm[20|10:1|11|19:12]| rd | opcode`
 * Used for unconditional jumps.
 * Examples:
 
