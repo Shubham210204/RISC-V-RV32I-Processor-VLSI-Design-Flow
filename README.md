@@ -98,7 +98,7 @@ Below is a block diagram of a single-cycle RISC-V processor:
 
 ### RISC-V 5 Execution Stages
 
-RISC-V processors typically follow a **5-stage pipeline** execution model. Each instruction goes through the following stages:
+While the block diagram illustrates the components of a **single-cycle processor**, practical RISC-V implementations adopt a **5-stage pipelined architecture** to achieve higher throughput. Each instruction progresses through Instruction Fetch, Decode, Execute, Memory Access, and Write-Back.
 
 <img src="https://github.com/Shubham210204/RISC-V-RV32I-Processor-Design-Implementation/blob/main/images/pipeline.png" width=900>
 
@@ -128,6 +128,53 @@ RISC-V processors typically follow a **5-stage pipeline** execution model. Each 
    * The result of the computation or data from memory is written back to the destination register.
 
 This pipeline increases instruction throughput by overlapping execution, meaning multiple instructions are processed simultaneously in different stages.
+
+### Hazards in a Pipelined RISC-V Processor
+
+In a pipelined architecture, multiple instructions overlap in execution. While this improves throughput, it also introduces **hazards**—situations that may cause incorrect execution or require stalling. The main types of hazards are:
+
+#### 1. **Data Hazards**
+
+* Occur when an instruction depends on the result of a previous instruction that has not yet completed.
+
+**Example:**
+
+```assembly
+ADD x3, x1, x2   # produces result in x3
+SUB x4, x3, x5   # needs value of x3 immediately
+```
+
+* **Problem:** The second instruction requires the updated value of `x3`, but it is not yet written back.
+* **Solutions:** Forwarding (data bypassing) or inserting stalls (pipeline bubbles).
+
+#### 2. **Control Hazards**
+
+* Arise from branch and jump instructions, where the next instruction’s address depends on the outcome of a condition.
+
+**Example:**
+
+```assembly
+BEQ x1, x2, LABEL   # branch decision depends on comparison
+ADD x3, x4, x5      # this instruction may be wrongly fetched
+```
+
+* **Problem:** The processor may fetch the wrong instruction if the branch outcome is not yet known.
+* **Solutions:** Branch prediction, delayed branching, or flushing incorrect instructions.
+
+#### 3. **Structural Hazards**
+
+* Happen when two instructions require the same hardware resource in the same cycle.
+
+**Example:**
+
+* If a single memory unit is shared for **both instruction fetch (IF)** and **data load/store (MEM)**:
+
+  ```assembly
+  LW  x3, 0(x1)   # needs memory access in MEM stage
+  ADD x4, x5, x6  # next instruction also needs memory access for fetch
+  ```
+* **Problem:** Both instructions compete for memory at the same cycle.
+* **Solutions:** Use separate instruction and data memories (Harvard architecture) or multi-ported hardware.
 
 ### Base ISA Instructions (RV32I – 39 Instructions)
 
