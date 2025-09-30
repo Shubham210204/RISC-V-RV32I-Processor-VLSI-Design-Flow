@@ -19,8 +19,13 @@ This project focuses on the **RTL to GDSII design** of a **5 stages pipelined RI
 3. [VLSI Design Flow](#3-vlsi-design-flow)  
    - [3.1 RTL Design & Simulation](#31-rtl-design--simulation)  
    - [3.2 Synthesis & Netlist Generation](#32-synthesis--netlist-generation)  
-   - [3.3 Schematic Design & SPICE Simulation](#33-schematic-design--spice-simulation)  
-   - [3.4 Layout Design & Verification](#34-layout-design--verification)  
+   - [3.3 Placement](#33-placement)  
+   - [3.4 Static Timing Analysis](#34-static-timing-analysis)
+   - [3.5 Routing](#35-routing)
+   - [3.6 Post-route STA](#36-post-route-sta)
+   - [3.7 Migration](#37-migration)
+   - [3.8 LVS & DRC](#38-lvs--drc)
+   - [3.9 GDS Generation](#39-gds-generation)
 4. [Results & Discussion](#4-results--discussion)  
 
 ## **1. Tools Setup**  
@@ -281,30 +286,27 @@ The RV32I base instruction set contains 39 fundamental instructions, grouped int
 
 ## **3. VLSI Design Flow**
 
-1. RTL Design and Simulation
+### **3.1 RTL Design & Simulation**
 
-   * Written in Verilog HDL
-   * Verified using Icarus Verilog and GTKWave
+### **3.2 Synthesis & Netlist Generation**
 
-2. Synthesis
+### **3.3 Placement**
 
-   * RTL synthesized using Yosys into gate-level netlist
+### **3.4 Static Timing Analysis**
 
-3. Floorplanning and Placement
+### **3.5 Routing**
 
-   * Implemented using Magic VLSI
+### **3.6 Post-route STA**
 
-4. Routing and Layout
+### **3.7 Migration**
 
-   * Signal routing and transistor-level layout generated
+### **3.8 LVS & DRC**
 
-5. Verification (LVS and DRC)
-
-   * Layout verified using Netgen and Magic VLSI
+### **3.9 GDS Generation**
 
 ---
 
-## **4. Results and Discussion**
+## **4. Results & Discussion**
 
 * Completed end-to-end flow from RTL to ASIC Layout to FPGA Implementation to Calculator Demo
 * Gained experience with open-source VLSI EDA tools and FPGA prototyping
