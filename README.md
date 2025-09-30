@@ -1,65 +1,82 @@
-# RISC-V RV32I Processor Design and Implementation (ASIC, FPGA, Calculator Demo)
+# **RISC-V RV32I Processor VLSI Design Flow**
 
-## Introduction
+## **Introduction**
+This project focuses on the **RTL to GDSII design** of a **5 stages pipelined RISC-V processor RV32I** using **Verilog and QFLOW toolchain**. The entire design flow is executed using **open-source VLSI tools**, ensuring an efficient and fabrication-ready implementation.  
 
-This project focuses on the design, implementation, and demonstration of a 32-bit RISC-V (RV32I) processor using both ASIC (VLSI) design flow and FPGA prototyping. The final processor is showcased through a Calculator Demonstration, highlighting the integration of hardware design, verification, and real-world application.
+## **Key Features**
 
-The work follows an end-to-end methodology:
+* **RV32I Base Instruction Set:** Implements the complete 32-bit integer instruction set.
+* **Pipelined Architecture:** Instructions are executed in an overlapping manner across the five stages to improve throughput.
+* **Hazard Detection and Resolution:**
+    * **Data Hazards:** Resolved using a **Forwarding Unit** to forward results from later stages to the Execute stage.
+    * **Control Hazards:** Handled by flushing the pipeline on taken branches.
+    * **Load-Use Hazards:** Managed by a **Stalling Unit** that inserts bubbles into the pipeline.
+* **Modular Design:** The RTL is organized into clean, stage-specific modules for better readability and maintainability.  
 
-* RTL coding in Verilog
-* ASIC design flow with open-source EDA tools
-* FPGA synthesis and implementation
-* Application demonstration on a Calculator system
+## **Contents**
+1. [Tools Setup](#1-tools-setup)
+2. [RISC-V Processor Overview](#2-risc-v-processor-overview)
+3. [VLSI Design Flow](#3-vlsi-design-flow)  
+   - [3.1 RTL Design & Simulation](#31-rtl-design--simulation)  
+   - [3.2 Synthesis & Netlist Generation](#32-synthesis--netlist-generation)  
+   - [3.3 Schematic Design & SPICE Simulation](#33-schematic-design--spice-simulation)  
+   - [3.4 Layout Design & Verification](#34-layout-design--verification)  
+4. [Results & Discussion](#4-results--discussion)  
 
-This repository combines all three aspects into a unified RISC-V learning and implementation project.
+## **1. Tools Setup**  
 
+### **1.1 VS Code**
+**VS Code** is a **lightweight and powerful code editor** used for writing, debugging, and managing Verilog and VLSI design files.  
+It offers **extensions for syntax highlighting, simulation, and debugging** to enhance the HDL design workflow.
+
+### **Installation Steps**
+```bash
+sudo apt update
+sudo apt install code
+```
+
+### **1.2 Icarus Verilog (Iverilog)**
+**Icarus Verilog (Iverilog)** is an **open-source Verilog simulator** used for compiling and simulating digital designs.  
+It is widely used in **VLSI design, FPGA development, and digital logic verification**.
+
+### **Installation Steps**
+```bash
+git clone https://github.com/steveicarus/iverilog.git
+cd iverilog
+sh autoconf.sh
+./configure
+make
+sudo make install
+```
+
+### **1.3 GTKWave**
+**GTKWave** is an **open-source waveform viewer** used for analyzing **digital simulation outputs** from Verilog and VHDL simulations.  
+It supports **VCD (Value Change Dump), LXT, LXT2, FST**, and other common waveform formats.
+
+### **Installation Steps**
+```bash
+git clone https://github.com/gtkwave/gtkwave.git
+cd gtkwave
+./configure
+make
+sudo make install
+```
+
+### **1.4 Qflow toolchain**
+**Qflow** is an **open-source framework for Physical Design**.  
+It is widely used for **logic synthesis, verification, layout design, timing analysis, etc**.
+It comprises of various tools: **Yosys, Graywolf, Vesta, Qrouter, Magic, Netgen and Klayout**.
+
+### **Installation Steps**
+```bash
+git clone https://github.com/kunalg123/vsdflow.git
+cd vsdflow
+chmod 777 opensource_eda_tool_install.sh
+./opensource_eda_tool_install.sh
+```
 ---
 
-## Objectives
-
-* Implement the RV32I RISC-V processor using open-source tools such as Icarus Verilog, Yosys, Magic VLSI, NGSpice, and Netgen
-* Map the processor design onto an FPGA for real-time execution and verification
-* Deploy the processor to execute calculator functions such as addition, subtraction, multiplication, and division
-* Cover both digital design (RTL, simulation, verification) and physical design (synthesis, floorplanning, place and route, DRC, LVS)
-
----
-
-## Table of Contents
-
-1. Tools and Environment Setup
-2. RISC-V Processor Overview
-3. ASIC Design Flow
-
-   * RTL Design and Simulation
-   * Synthesis (Yosys)
-   * Floorplanning and Placement
-   * Routing and Layout (Magic VLSI)
-   * LVS and DRC Checks
-4. FPGA Implementation
-
-   * Synthesis and Mapping
-   * FPGA Board Setup
-   * Test Program Execution
-5. Calculator Demonstration
-
-   * Calculator Architecture
-   * Operation Flow
-   * Demo Results
-6. Results and Key Learnings
-7. References
-
----
-
-## Tools and Environment Setup
-
-* ASIC Design Tools: Icarus Verilog, GTKWave, Yosys, Xschem, NGSpice, Magic VLSI, Netgen
-* FPGA Tools: Xilinx Vivado or Intel Quartus (depending on FPGA board)
-* Languages: Verilog HDL, Python (for testbenches)
-* Hardware: FPGA board such as Nexys A7 or Basys 3, Calculator I/O peripherals
-
----
-
-## RISC-V Processor Overview
+## **2. RISC-V Processor Overview**
 
 ### Why RISC-V (Comparison with ARM and x86)
 
@@ -262,7 +279,7 @@ The RV32I base instruction set contains 39 fundamental instructions, grouped int
 
 ---
 
-## ASIC Design Flow
+## **3. VLSI Design Flow**
 
 1. RTL Design and Simulation
 
@@ -287,27 +304,7 @@ The RV32I base instruction set contains 39 fundamental instructions, grouped int
 
 ---
 
-## FPGA Implementation
-
-* The synthesized RISC-V processor was implemented on FPGA
-* Test programs executed to validate arithmetic and logical operations
-* Verified correct functionality with on-board input and output peripherals
-
----
-
-## Calculator Demonstration
-
-The processor powers a simple Calculator System that supports:
-
-* Addition, Subtraction, Multiplication, and Division
-* Inputs via switches or keypad
-* Outputs via LEDs, seven segment display, or LCD
-
-This real-world demonstration bridges the gap between processor design and application usage.
-
----
-
-## Results and Key Learnings
+## **4. Results and Key Learnings**
 
 * Completed end-to-end flow from RTL to ASIC Layout to FPGA Implementation to Calculator Demo
 * Gained experience with open-source VLSI EDA tools and FPGA prototyping
