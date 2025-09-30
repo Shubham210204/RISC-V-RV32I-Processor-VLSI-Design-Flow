@@ -304,7 +304,7 @@ The RV32I base instruction set contains 39 fundamental instructions, grouped int
 
 ---
 
-## **4. Results and Key Learnings**
+## **4. Results and Discussion**
 
 * Completed end-to-end flow from RTL to ASIC Layout to FPGA Implementation to Calculator Demo
 * Gained experience with open-source VLSI EDA tools and FPGA prototyping
